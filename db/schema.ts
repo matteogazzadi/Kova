@@ -13,6 +13,8 @@ import {
 import { relations } from 'drizzle-orm'
 
 // ─── Enums ────────────────────────────────────────────────────────
+export const aiProviderEnum = pgEnum('ai_provider', ['anthropic', 'openai', 'google'])
+
 export const sportEnum = pgEnum('sport', [
   'running',
   'cycling',
@@ -62,6 +64,7 @@ export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
   name: text('name'),
+  username: text('username').unique(),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
@@ -72,6 +75,8 @@ export const profiles = pgTable('profiles', {
     .notNull()
     .unique()
     .references(() => users.id, { onDelete: 'cascade' }),
+  firstName: text('first_name'),
+  lastName: text('last_name'),
   gender: genderEnum('gender'),
   dateOfBirth: timestamp('date_of_birth', { withTimezone: true }),
   weightKg: real('weight_kg'),
@@ -81,6 +86,8 @@ export const profiles = pgTable('profiles', {
   goal: text('goal').notNull().default(''),
   weeklyHoursAvailable: real('weekly_hours_available').notNull().default(5),
   injuryNotes: text('injury_notes'),
+  aiProvider: aiProviderEnum('ai_provider'),
+  aiApiKeyEncrypted: text('ai_api_key_encrypted'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
 })
