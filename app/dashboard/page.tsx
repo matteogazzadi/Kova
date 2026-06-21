@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
-// ─── Mock data ──────────────────────────────────────────────────
+// ─── Mock data ────────────────────────────────────────────────────
 
 const recentActivities = [
   {
@@ -26,6 +26,7 @@ const recentActivities = [
     duration: '58 min',
     hr: 142,
     effort: 3,
+    effortColor: 'text-emerald-600',
   },
   {
     emoji: '🏃',
@@ -35,6 +36,7 @@ const recentActivities = [
     duration: '47 min',
     hr: 168,
     effort: 4,
+    effortColor: 'text-amber-600',
   },
   {
     emoji: '🏃',
@@ -44,6 +46,7 @@ const recentActivities = [
     duration: '2h 08',
     hr: 138,
     effort: 3,
+    effortColor: 'text-emerald-600',
   },
   {
     emoji: '🏃',
@@ -53,6 +56,7 @@ const recentActivities = [
     duration: '35 min',
     hr: 128,
     effort: 1,
+    effortColor: 'text-blue-600',
   },
   {
     emoji: '🚴',
@@ -62,6 +66,7 @@ const recentActivities = [
     duration: '1h 32',
     hr: 145,
     effort: 3,
+    effortColor: 'text-emerald-600',
   },
 ]
 
@@ -119,7 +124,7 @@ function EffortDots({ effort }: { effort: number }) {
   )
 }
 
-// ─── Page ────────────────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────────
 
 export default function DashboardPage() {
   return (
@@ -340,8 +345,7 @@ export default function DashboardPage() {
                   <CardTitle className="text-base text-primary">AI Coach</CardTitle>
                 </div>
                 <CardDescription>
-                  Connect Claude, ChatGPT, or Gemini to get a personalised plan and chat about your
-                  training.
+                  Connect Claude, ChatGPT, or Gemini to get a personalised plan and chat about your training.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -369,8 +373,7 @@ export default function DashboardPage() {
                     <div className="flex justify-between text-xs">
                       <span className="text-muted-foreground">{label}</span>
                       <span className="font-medium">
-                        {value}{' '}
-                        {sub && <span className="text-muted-foreground">· {sub}</span>}
+                        {value} {sub && <span className="text-muted-foreground">· {sub}</span>}
                       </span>
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-muted">
